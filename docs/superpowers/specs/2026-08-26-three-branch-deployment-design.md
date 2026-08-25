@@ -14,7 +14,7 @@ The workflow must prevent bypassing testing, make deployment ownership visible, 
 - `dev` is the testing and staging branch. It accepts changes only through a pull request from `design`.
 - `main` is the production branch. It accepts changes only through a pull request from `dev`.
 
-Before new work begins on `design`, the previous change must have been promoted, reverted, or intentionally replaced. No working-branch prefixes or additional release branches are used.
+Before new work begins on `design`, the previous change must have been promoted, reverted, or intentionally replaced. No additional branch is used.
 
 ## Repository Controls
 

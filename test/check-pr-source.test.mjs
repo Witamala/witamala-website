@@ -25,8 +25,8 @@ test('rejects design into main', () => {
   assert.equal(validatePullRequestSource('main', 'design').allowed, false);
 });
 
-test('rejects prefixed working branches into dev', () => {
-  for (const head of ['codex/example', 'feature/example', 'release/example']) {
+test('rejects unapproved source branches into dev', () => {
+  for (const head of ['main', 'topic', 'production']) {
     const result = validatePullRequestSource('dev', head);
     assert.equal(result.allowed, false);
     assert.match(result.message, /must come from design/);

@@ -34,7 +34,7 @@
 
 - [ ] **Step 1: Write failing transition tests**
 
-Test `design` → `dev` and `dev` → `main` as allowed. Test `main` → `dev`, `design` → `main`, and any prefixed working branch as rejected.
+Test `design` → `dev` and `dev` → `main` as allowed. Test `main` → `dev`, `design` → `main`, and any unapproved branch as rejected.
 
 - [ ] **Step 2: Run the focused test and confirm it fails**
 
