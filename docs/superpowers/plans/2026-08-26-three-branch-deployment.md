@@ -200,7 +200,7 @@ For both `dev` and `main`, require pull requests, require `source-branch-guard` 
 
 - [ ] **Step 4: Configure the Vercel project**
 
-Connect `Witamala/witamala-website`, set `main` as production, retain automatic previews for `design`, map the `dev` branch domain to `witamala.io`, and map the production domain to `witamala.ai`. Do not merge or promote a branch to trigger testing or production.
+Connect `Witamala/witamala-website`, set `main` as production, retain automatic previews for `design`, use the generated `dev` branch alias for testing, and map `witamala.io` to production without a branch override. Keep `witamala-website.vercel.app` and `witamala.ai` only as additional production aliases. Do not merge or promote a branch to trigger testing or production.
 
 - [ ] **Step 5: Open the setup pull request**
 

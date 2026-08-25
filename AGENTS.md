@@ -36,11 +36,12 @@ npm run build
 After deployment, run:
 
 ```sh
+npm run smoke -- https://witamala-website-git-dev-noraks-projects.vercel.app
 npm run smoke -- https://witamala.io
-npm run smoke -- https://witamala.ai
 ```
 
 Use only the command appropriate to the environment just deployed.
+The project-wide `https://witamala-website.vercel.app` alias follows production from `main`; do not use it as evidence that `dev` passed testing.
 
 ## “Deploy to testing”
 
@@ -53,7 +54,7 @@ When the user says **“Deploy to testing”**:
 5. Wait for every required check.
 6. Merge `design` into `dev`.
 7. Wait for Vercel to deploy `dev`.
-8. Verify `https://witamala.io`.
+8. Verify `https://witamala-website-git-dev-noraks-projects.vercel.app`.
 9. Run the testing smoke tests.
 10. Report the exact commit, pull request, deployment, and health result.
 
@@ -61,13 +62,13 @@ When the user says **“Deploy to testing”**:
 
 When the user says **“Push to production”**:
 
-1. Verify that the current `dev` commit passed testing at `https://witamala.io`.
+1. Verify that the current `dev` commit passed testing at `https://witamala-website-git-dev-noraks-projects.vercel.app`.
 2. Confirm no newer untested commit entered `dev`.
 3. Create or update the pull request from `dev` into `main`.
 4. Wait for every required check.
 5. Merge `dev` into `main`.
 6. Wait for Vercel to deploy `main`.
-7. Verify `https://witamala.ai`.
+7. Verify `https://witamala.io`.
 8. Run the production smoke tests.
 9. Report the exact commit, pull request, deployment, and health result.
 

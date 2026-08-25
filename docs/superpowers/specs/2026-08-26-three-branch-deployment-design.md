@@ -40,20 +40,20 @@ The repository includes:
 One Vercel project connects to `Witamala/witamala-website`.
 
 - `design` produces automatic Preview deployments with generated Vercel URLs.
-- `dev` produces automatic branch deployments and owns `https://witamala.io`.
-- `main` is the Vercel production branch and owns `https://witamala.ai`.
+- `dev` produces automatic branch deployments at `https://witamala-website-git-dev-noraks-projects.vercel.app`.
+- `main` is the Vercel production branch and owns `https://witamala.io`; `witamala-website.vercel.app` and `witamala.ai` may remain additional production aliases.
 
-The Vercel project must have Git integration enabled, `main` selected as the production branch, and `witamala.io` assigned as a branch domain for `dev`. `witamala.ai` is the production domain. Domain DNS must point to Vercel before health verification can pass.
+The Vercel project must have Git integration enabled and `main` selected as the production branch. Testing uses the generated `dev` branch alias; `witamala.io` is not assigned to a branch and therefore follows production. The project-wide `witamala-website.vercel.app` alias also follows production and cannot serve as the `dev` gate. Domain DNS must point to Vercel before production health verification can pass.
 
 ## Promotion Workflows
 
 ### Deploy to testing
 
-Validate `design`; run lint, tests, and the production build; commit and push; create or update `design` → `dev`; wait for required checks; merge; wait for the `dev` deployment; verify `https://witamala.io`; run smoke tests; and report commit, pull request, deployment, and health.
+Validate `design`; run lint, tests, and the production build; commit and push; create or update `design` → `dev`; wait for required checks; merge; wait for the `dev` deployment; verify `https://witamala-website-git-dev-noraks-projects.vercel.app`; run smoke tests; and report commit, pull request, deployment, and health.
 
 ### Push to production
 
-Confirm the current `dev` commit is the exact commit that passed at `https://witamala.io`; ensure no newer commit entered `dev`; create or update `dev` → `main`; wait for required checks; merge; wait for the `main` deployment; verify `https://witamala.ai`; run smoke tests; and report commit, pull request, deployment, and health.
+Confirm the current `dev` commit is the exact commit that passed at `https://witamala-website-git-dev-noraks-projects.vercel.app`; ensure no newer commit entered `dev`; create or update `dev` → `main`; wait for required checks; merge; wait for the `main` deployment; verify `https://witamala.io`; run smoke tests; and report commit, pull request, deployment, and health.
 
 ## Initial Setup
 
