@@ -4,6 +4,7 @@
   "version": "1.0.0",
   "scripts": {
     "dev": "next dev",
+    "lint": "node scripts/lint.mjs",
     "test": "node --test",
     "build": "next build",
     "start": "next start"

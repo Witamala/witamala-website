@@ -6,7 +6,7 @@
 
 **Architecture:** A small Node module owns the allowed pull-request transitions and is consumed by both automated tests and GitHub Actions. A separate dependency-free Node smoke runner verifies deployed routes. Repository instructions define the serialized working-branch contract, while GitHub and Vercel hold the external enforcement and environment aliases.
 
-**Tech Stack:** Node.js 20, Node test runner, Next.js 14, ESLint, GitHub Actions, GitHub branch protection, Vercel Git deployments.
+**Tech Stack:** Node.js 20, Node test runner, Next.js 14, GitHub Actions, GitHub branch protection, Vercel Git deployments.
 
 **Spec:** `docs/superpowers/specs/2026-08-26-three-branch-deployment-design.md`
 
@@ -71,18 +71,17 @@ git commit -m "test: enforce promotion branch sources"
 ### Task 2: Lint and CI validation gates
 
 **Files:**
-- Create: `.eslintrc.json`
+- Create: `scripts/lint.mjs`
 - Create: `.github/workflows/ci.yml`
 - Modify: `package.json`
-- Modify: `package-lock.json`
 
 **Interfaces:**
 - Consumes: the Task 1 CLI and npm scripts.
 - Produces: required GitHub check contexts `source-branch-guard` and `validate`.
 
-- [ ] **Step 1: Add lint dependencies and configuration**
+- [ ] **Step 1: Add deterministic lint configuration**
 
-Install ESLint 8 and the matching Next.js 14 ESLint configuration as development dependencies. Configure `next/core-web-vitals` and add `"lint": "next lint"`.
+Use Next.js's pinned compiled Babel parser to syntax-check repository JavaScript and JSX without adding registry dependencies. Reject trailing whitespace and unresolved merge-conflict markers. Add `"lint": "node scripts/lint.mjs"`.
 
 - [ ] **Step 2: Run lint and correct repository lint failures**
 
@@ -101,7 +100,7 @@ Run `npm run lint`, `npm test`, and `npm run build`. Inspect `.github/workflows/
 - [ ] **Step 5: Commit**
 
 ```bash
-git add .eslintrc.json .github/workflows/ci.yml package.json package-lock.json
+git add scripts/lint.mjs .github/workflows/ci.yml package.json docs/superpowers/plans/2026-08-26-three-branch-deployment.md
 git commit -m "ci: validate the three-branch promotion flow"
 ```
 
