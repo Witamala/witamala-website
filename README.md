@@ -11,9 +11,18 @@ Generated from the approved hi-fi design (`Witamala.dc.html` + `Foundations.dc.h
 
 ## Testing
 
-Run the production build to validate the site:
+Run all local validation gates:
 
+    npm run lint
+    npm test
     npm run build
+
+After deployment, smoke-test the environment that was promoted:
+
+    npm run smoke -- https://witamala-website-git-dev-noraks-projects.vercel.app
+    npm run smoke -- https://witamala.io
+
+See [the deployment runbook](docs/deployment.md) for the required `design` → `dev` → `main` promotion process and Vercel mapping.
 
 ## Architecture
 
