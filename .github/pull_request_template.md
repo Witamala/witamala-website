@@ -22,4 +22,4 @@
 ## Release gate
 
 - [ ] For testing: the user said “Deploy to testing.”
-- [ ] For production: the exact `dev` commit passed at `https://witamala-website-git-dev-noraks-projects.vercel.app`, no newer commit entered `dev`, and the user said “Push to production.”
+- [ ] For production: the exact `dev` commit passed at `https://witamala.io`, no newer commit entered `dev`, and the user said “Push to production.”

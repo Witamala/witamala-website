@@ -19,8 +19,8 @@ Run all local validation gates:
 
 After deployment, smoke-test the environment that was promoted:
 
-    npm run smoke -- https://witamala-website-git-dev-noraks-projects.vercel.app
     npm run smoke -- https://witamala.io
+    npm run smoke -- https://witamala.ai
 
 See [the deployment runbook](docs/deployment.md) for the required `design` → `dev` → `main` promotion process and Vercel mapping.
 
