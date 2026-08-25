@@ -9,8 +9,8 @@ Witamala uses one forward-only promotion chain:
 | Branch | Role | Vercel environment | Canonical URL |
 | --- | --- | --- | --- |
 | `design` | Shared AI working and design | Automatic Preview | Generated Vercel preview URL |
-| `dev` | Testing and staging | Automatic branch deployment | `https://witamala.io` |
-| `main` | Production | Automatic Production | `https://witamala.ai` |
+| `dev` | Testing and staging | Automatic branch deployment | `https://witamala-website-git-dev-noraks-projects.vercel.app` |
+| `main` | Production | Automatic Production | `https://witamala.io` |
 
 Only one AI change or release may be active on `design`. Before accepting new work, confirm the preceding change was promoted, reverted, or intentionally replaced.
 
@@ -52,10 +52,11 @@ Connect the Vercel project to the GitHub repository `Witamala/witamala-website` 
 2. Production branch: `main`.
 3. Automatic deployments: enabled for Git pushes.
 4. Preview deployments: enabled for `design`.
-5. Branch domain: assign `witamala.io` to `dev`.
-6. Production domain: assign `witamala.ai` to `main`.
+5. Testing URL: use Vercel's generated branch alias `witamala-website-git-dev-noraks-projects.vercel.app` for `dev`.
+6. Production domain: assign `witamala.io` to `main` with no branch-domain override.
+7. Additional production aliases: `witamala-website.vercel.app` and `witamala.ai` may also follow `main`.
 
-Both domains must be verified in Vercel and their DNS records must use the values Vercel provides. A domain is not healthy until HTTPS resolves to the intended Vercel deployment.
+The project-wide `witamala-website.vercel.app` URL follows the production branch and must not be used as the `dev` testing gate. Custom production domains must be verified in Vercel and their DNS records must use the values Vercel provides. A domain is not healthy until HTTPS resolves to the intended Vercel deployment.
 
 ## Deploy to testing
 
@@ -69,8 +70,8 @@ Run this procedure only after the user says **“Deploy to testing.”**
 6. Wait for `source-branch-guard`, `validate`, and Vercel checks to pass.
 7. Merge the pull request into `dev` without modifying `main`.
 8. Record the resulting `dev` commit SHA.
-9. Wait until the Vercel deployment for that exact SHA is ready at `https://witamala.io`.
-10. Run `npm run smoke -- https://witamala.io`.
+9. Wait until the Vercel deployment for that exact SHA is ready at `https://witamala-website-git-dev-noraks-projects.vercel.app`.
+10. Run `npm run smoke -- https://witamala-website-git-dev-noraks-projects.vercel.app`.
 11. Report the commit SHA, pull request URL, Vercel deployment URL and state, canonical domain, and smoke-test result.
 
 Do not treat an older healthy deployment as evidence for a newer `dev` commit.
@@ -80,14 +81,14 @@ Do not treat an older healthy deployment as evidence for a newer `dev` commit.
 Run this procedure only after the user says **“Push to production.”**
 
 1. Read the current `dev` SHA.
-2. Confirm that exact SHA is the version that passed the testing deployment and smoke tests at `https://witamala.io`.
+2. Confirm that exact SHA is the version that passed the testing deployment and smoke tests at `https://witamala-website-git-dev-noraks-projects.vercel.app`.
 3. Confirm `dev` has received no newer commit.
 4. Create or update the `dev` → `main` pull request.
 5. Wait for `source-branch-guard`, `validate`, and Vercel checks to pass.
 6. Merge the pull request into `main`.
 7. Record the resulting `main` commit SHA.
-8. Wait until the Vercel production deployment for that exact SHA is ready at `https://witamala.ai`.
-9. Run `npm run smoke -- https://witamala.ai`.
+8. Wait until the Vercel production deployment for that exact SHA is ready at `https://witamala.io`.
+9. Run `npm run smoke -- https://witamala.io`.
 10. Report the commit SHA, pull request URL, Vercel deployment URL and state, canonical domain, and smoke-test result.
 
 If `dev` changed after testing, stop and repeat the testing promotion before production.
@@ -97,8 +98,8 @@ If `dev` changed after testing, stop and repeat the testing promotion before pro
 The dependency-free smoke runner checks `/`, `/about`, `/contact`, and `/blog`. It requires successful HTTP responses, prevents unexpected cross-origin redirects, and confirms the homepage identifies Witamala.
 
 ```sh
+npm run smoke -- https://witamala-website-git-dev-noraks-projects.vercel.app
 npm run smoke -- https://witamala.io
-npm run smoke -- https://witamala.ai
 ```
 
 ## Failure and rollback handling
