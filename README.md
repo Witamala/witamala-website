@@ -9,6 +9,12 @@ Generated from the approved hi-fi design (`Witamala.dc.html` + `Foundations.dc.h
     npm run dev        # http://localhost:3000
     npm run build && npm start
 
+## Testing
+
+Run the production build to validate the site:
+
+    npm run build
+
 ## Architecture
 
     app/
